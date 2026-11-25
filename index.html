@@ -27,6 +27,7 @@
 :root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
 [hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 html{scroll-behavior:smooth;scroll-padding-top:76px}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,"Segoe UI",Arial,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
 h1,h2,h3{font-family:"Space Grotesk","Segoe UI",Arial,sans-serif;line-height:1.08;margin:0;text-wrap:balance}
@@ -116,6 +117,17 @@ header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 9
 .msg{max-width:82%;padding:9px 13px;border-radius:12px;font-size:14px;line-height:1.45;opacity:0;animation:entra .4s ease forwards}
 .msg.cli{align-self:flex-end;background:#2A3E5A;border-bottom-right-radius:4px}
 .msg.bot{align-self:flex-start;background:#F7F3EA;color:#0E1B2C;border-bottom-left-radius:4px}
+.conversa{flex:1;display:flex;flex-direction:column;gap:10px;overflow-y:auto;max-height:290px;min-height:240px;padding-right:4px;scrollbar-width:thin}
+.digitando{display:flex;gap:4px;align-self:flex-start;background:#F7F3EA;border-radius:12px;padding:12px 14px}
+.digitando i{width:6px;height:6px;border-radius:50%;background:#5B6B80;animation:pisca 1s infinite}
+.digitando i:nth-child(2){animation-delay:.15s}.digitando i:nth-child(3){animation-delay:.3s}
+@keyframes pisca{0%,100%{opacity:.3}50%{opacity:1}}
+.rapidas{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.rapidas button{min-height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--luz);background:transparent;color:#F7F3EA;font:500 13px Inter,Arial,sans-serif;cursor:pointer}
+.rapidas button:hover{background:rgba(242,169,59,.15)}
+form.envio{display:flex;gap:8px;margin-top:10px;background:none;border:0;padding:0;border-radius:0}
+.envio input{flex:1;min-height:44px;padding:10px 14px;border-radius:999px;border:1px solid #3A4F6B;background:#0B1624;color:#F7F3EA;font:15px Inter,Arial,sans-serif}
+.envio button{width:44px;height:44px;border-radius:50%;border:0;background:var(--luz);color:#0E1B2C;cursor:pointer;display:grid;place-items:center;flex:none}
 .fluxo{display:flex;flex-direction:column;gap:10px;flex:1}
 .passo{display:flex;align-items:center;gap:14px;padding:14px;border-radius:12px;background:#13233A;border:1px solid #24364F;opacity:.35;transition:opacity .4s,border-color .4s}
 .passo.on{opacity:1;border-color:var(--luz)}
@@ -214,7 +226,93 @@ footer{padding:32px max(5vw,16px);font-size:14px;color:var(--muted);border-top:1
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
 footer .brand b{font-size:20px}
 
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.ly,.sol{opacity:1}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+
+/* vitrine IA */
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+.ia{background:#08111D;color:#F7F3EA;position:relative;overflow:hidden;isolation:isolate}
+.ia-fundo{position:absolute;inset:0;z-index:-1;--gx:30%;--gy:20%;background:radial-gradient(560px 420px at var(--gx) var(--gy),rgba(242,169,59,.16),transparent 70%),radial-gradient(900px 600px at 90% 100%,rgba(58,79,107,.45),transparent 70%);transition:--gx .8s,--gy .8s}
+.ia-fundo::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(247,243,234,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(247,243,234,.05) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 45%,#000 20%,transparent 80%);mask-image:radial-gradient(ellipse 70% 60% at 50% 45%,#000 20%,transparent 80%)}
+.ia .kicker{color:var(--luz)}.ia .lede{color:#C9CFD8}.ia h2{color:#F7F3EA}
+.vitrine2{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:56px;align-items:center;margin-top:48px}
+.orbita{position:relative;aspect-ratio:1/1;width:100%;max-width:500px;justify-self:center}
+.orbita>svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.anel{fill:none;stroke:rgba(247,243,234,.16);stroke-width:.3;stroke-dasharray:.8 1.6;transform-box:view-box;transform-origin:50px 50px;animation:gira 80s linear infinite}
+.anel.a2{stroke:rgba(242,169,59,.18);stroke-dasharray:.4 3;animation-duration:120s;animation-direction:reverse}
+@keyframes gira{to{transform:rotate(360deg)}}
+.raio{stroke:rgba(247,243,234,.16);stroke-width:.35;stroke-linecap:round;transition:stroke .3s}
+.raio.on{stroke:var(--luz);stroke-width:.7;stroke-dasharray:1.2 2;animation:flui .9s linear infinite}
+@keyframes flui{to{stroke-dashoffset:-6.4}}
+.nucleo{position:absolute;left:50%;top:50%;width:25%;aspect-ratio:1/1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE6BC,#F2A93B 48%,#B8700F);box-shadow:0 0 60px rgba(242,169,59,.5),0 0 0 12px rgba(242,169,59,.08),0 0 0 26px rgba(242,169,59,.04);display:grid;place-items:center;text-align:center;color:#0E1B2C;font:700 clamp(12px,1.25vw,16px)/1.15 "Space Grotesk",Arial,sans-serif;animation:pulsa 4s ease-in-out infinite}
+@keyframes pulsa{50%{box-shadow:0 0 95px rgba(242,169,59,.75),0 0 0 16px rgba(242,169,59,.11),0 0 0 34px rgba(242,169,59,.05)}}
+.no{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:8px;background:none;border:0;color:#AEB8C5;cursor:pointer;font:500 13px/1.25 Inter,Arial,sans-serif;width:124px;text-align:center;padding:4px}
+.no .dot{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;background:rgba(19,35,58,.85);border:1px solid #2A3E5A;color:#F7F3EA;backdrop-filter:blur(6px);transition:transform .3s,background .3s,box-shadow .3s,border-color .3s}
+.no .dot svg{width:26px;height:26px}
+.no:hover .dot{border-color:var(--luz);transform:translateY(-2px)}
+.no:hover{color:#F7F3EA}
+.no:focus-visible{outline:none}.no:focus-visible .dot{outline:3px solid var(--luz);outline-offset:3px}
+.no[aria-selected=true]{color:#F7F3EA;font-weight:600}
+.no[aria-selected=true] .dot{background:var(--luz);color:#0E1B2C;border-color:var(--luz);box-shadow:0 0 34px rgba(242,169,59,.65);transform:scale(1.1)}
+.vidro{position:relative;border-radius:24px;padding:28px;background:linear-gradient(160deg,rgba(30,49,76,.7),rgba(12,23,38,.78));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(247,243,234,.08);box-shadow:0 30px 90px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:18px;overflow:hidden}
+.vidro::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ang),transparent 0 62%,rgba(242,169,59,.9) 80%,transparent 96%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:borda 7s linear infinite;pointer-events:none}
+.vidro::after{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,80%) var(--my,0px),rgba(242,169,59,.09),transparent 60%);pointer-events:none}
+@keyframes borda{to{--ang:360deg}}
+.vidro>*{position:relative;z-index:1}
+.pv-area{display:inline-flex;font-size:12px;font-weight:600;color:var(--luz);border:1px solid rgba(242,169,59,.35);border-radius:999px;padding:4px 12px}
+.pv-topo h3{font-size:clamp(24px,2.4vw,32px);margin-top:12px;color:#F7F3EA}
+.pv-frase{color:#C9CFD8;font-size:17px;min-height:1.6em;margin-top:8px}
+.cursor{display:inline-block;width:2px;height:1.05em;background:var(--luz);vertical-align:-3px;margin-left:2px;animation:pisca 1s steps(1) infinite}
+.vidro .demo{background:rgba(6,13,23,.55);border:1px solid rgba(247,243,234,.07);border-radius:16px;padding:22px;min-height:340px}
+.pv-info{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.pv-info div{padding:14px;border-radius:12px;background:rgba(247,243,234,.04);border:1px solid rgba(247,243,234,.08)}
+.pv-info small{color:var(--luz);font-size:12px;font-weight:600;display:block;margin-bottom:4px}
+.pv-info p{font-size:14px;color:#DCE1E8;line-height:1.5}
+@media(max-width:1020px){.vitrine2{grid-template-columns:minmax(0,1fr);gap:28px}.orbita{max-width:440px}}
+@media(max-width:600px){.orbita{max-width:340px}.no{width:86px;font-size:11px;gap:6px}.no .dot{width:42px;height:42px;border-radius:13px}.no .dot svg{width:20px;height:20px}.pv-info{grid-template-columns:minmax(0,1fr)}.vidro{padding:18px}.vidro .demo{padding:16px}}
+
+/* parte de baixo escura */
+.escuro{--bg:#0B1624;--ink:#F7F3EA;--muted:#B9C2CE;--card:rgba(22,38,60,.72);--line:#22354F;--paper:#102036;--ambar:#F2A93B;background:var(--bg);color:var(--ink);position:relative}
+.escuro.alt{--bg:#0E1B2C}
+.escuro::before{content:"";position:absolute;left:10%;right:10%;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(242,169,59,.35),transparent)}
+.escuro .l1{background:#16263B;border:1px solid #24364F}.escuro .l2{background:#22385A}.escuro .l3{background:#33507A}
+.escuro .layer p{color:#C9D2DE}.escuro .l4 p{color:#3A2A0C}.escuro .l4{border:0}
+.escuro .steps{position:relative}
+.escuro .steps li{border-top:2px solid #24364F;position:relative}
+.escuro .steps li::after{content:"";position:absolute;left:0;top:-2px;height:2px;width:0;background:var(--luz);transition:width 1s ease}
+.escuro .steps.on li::after{width:100%}
+.escuro .steps.on li:nth-child(2)::after{transition-delay:.25s}.escuro .steps.on li:nth-child(3)::after{transition-delay:.5s}.escuro .steps.on li:nth-child(4)::after{transition-delay:.75s}.escuro .steps.on li:nth-child(5)::after{transition-delay:1s}
+.escuro .dif,.escuro .perfil,.escuro .faq details{backdrop-filter:blur(8px);transition:border-color .3s,transform .3s}
+.escuro .dif:hover{border-color:rgba(242,169,59,.5);transform:translateY(-3px)}
+.escuro .dif svg{padding:8px;width:48px;height:48px;border-radius:12px;background:rgba(242,169,59,.1)}
+.escuro .perfil{background:linear-gradient(160deg,rgba(30,49,76,.7),rgba(12,23,38,.8));box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.escuro .perfil .ini{background:var(--luz);color:#0E1B2C}
+.escuro .faq details[open]{border-color:rgba(242,169,59,.4)}
+/* calculadora */
+.calc{background:radial-gradient(700px 400px at 85% 40%,rgba(242,169,59,.14),transparent 70%),#08111D;color:#F7F3EA}
+.calc .kicker{color:var(--luz)}.calc .lede{color:#C9CFD8;margin-top:14px}
+.calc-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center}
+.controles{display:flex;flex-direction:column;gap:22px;margin-top:32px}
+.ctrl-top{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:10px}
+.ctrl label{font-size:15px;font-weight:500;color:#DCE1E8}
+.ctrl output{font:700 20px "Space Grotesk",Arial,sans-serif;color:var(--luz);white-space:nowrap}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;background:linear-gradient(90deg,var(--luz) var(--p,50%),#24364F var(--p,50%));padding:0;min-height:0;border:0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#F7F3EA;border:4px solid var(--luz);box-shadow:0 0 16px rgba(242,169,59,.6);cursor:pointer}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#F7F3EA;border:4px solid var(--luz);cursor:pointer}
+input[type=range]:focus-visible{outline:3px solid var(--luz);outline-offset:8px}
+.resultado{position:relative;border-radius:24px;padding:34px;background:linear-gradient(160deg,rgba(30,49,76,.75),rgba(12,23,38,.85));border:1px solid rgba(247,243,234,.08);box-shadow:0 30px 90px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:18px;overflow:hidden}
+.resultado::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ang),transparent 0 62%,rgba(242,169,59,.9) 80%,transparent 96%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:borda 7s linear infinite;pointer-events:none}
+.res-rot{font-size:13px;font-weight:600;color:#AEB8C5}
+.res-num{font:700 clamp(64px,8vw,104px)/1 "Space Grotesk",Arial,sans-serif;color:var(--luz);letter-spacing:-.03em;text-shadow:0 0 40px rgba(242,169,59,.35)}
+.res-num small{font-size:.4em;margin-left:6px;color:#F7F3EA}
+.res-linha{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.res-linha>div{padding:14px;border-radius:12px;background:rgba(247,243,234,.04);border:1px solid rgba(247,243,234,.08)}
+.res-sec{font:600 22px "Space Grotesk",Arial,sans-serif;margin-top:4px;white-space:nowrap}
+.res-barra{height:8px;border-radius:99px;background:#24364F;overflow:hidden}
+.res-barra div{height:100%;width:0;background:linear-gradient(90deg,#B8700F,var(--luz),#F7D08F);transition:width .5s ease}
+.res-nota{font-size:13px;color:#9FAABA}
+.resultado .btn{align-self:flex-start}
+@media(max-width:820px){.calc-grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.res-linha{grid-template-columns:minmax(0,1fr)}.resultado{padding:22px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.ly,.sol,.msg{opacity:1}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
 @media(max-width:1020px){.vitrine{grid-template-columns:minmax(0,1fr)}.abas{flex-direction:row;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}.aba{flex:none;scroll-snap-align:start;min-width:220px}.difs{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(3,minmax(0,1fr))}.nav nav{display:none}}
 @media(max-width:820px){.hero .wrap,.about,.contact .wrap,.painel{grid-template-columns:minmax(0,1fr)}.scene{max-height:380px;order:-1}.layers,.faixa ul{grid-template-columns:repeat(2,minmax(0,1fr))}.c2{right:2%}}
 @media(max-width:600px){.steps,.difs,.layers,form{grid-template-columns:minmax(0,1fr)}.layer{min-height:0!important}.nav .btn{display:none}.chip{font-size:12px;padding:8px 10px}.kpi b{font-size:16px}.kpi{padding:10px}.demo{padding:18px}.kpis{gap:8px}.pipe{grid-template-columns:minmax(0,1fr);}.seta{height:24px;width:2px;justify-self:center;background:repeating-linear-gradient(180deg,var(--luz) 0 6px,transparent 6px 12px)}}
@@ -228,7 +326,7 @@ footer .brand b{font-size:20px}
       <span><b>SJL</b><small>SOLUÇÕES EM TECNOLOGIA</small></span>
     </a>
     <nav aria-label="Seções">
-      <a href="#solucoes">Soluções</a><a href="#como-pensamos">Como pensamos</a><a href="#metodo">Método</a><a href="#quem-somos">Quem somos</a><a href="#perguntas">Perguntas</a>
+      <a href="#solucoes">Soluções</a><a href="#como-pensamos">Como pensamos</a><a href="#metodo">Método</a><a href="#quem-somos">Quem somos</a><a href="#calculadora">Calcule seu ganho</a>
     </nav>
     <a class="btn luz" href="#contato">Fale com a SJL</a>
   </div>
@@ -296,21 +394,25 @@ footer .brand b{font-size:20px}
   </ul>
 </div>
 
-<section class="band" id="solucoes" aria-labelledby="t-sol">
+<section class="band ia" id="solucoes" aria-labelledby="t-sol">
+  <div class="ia-fundo" id="ia-fundo" aria-hidden="true"></div>
   <div class="wrap">
     <div class="head reveal">
       <p class="kicker">Soluções</p>
-      <h2 id="t-sol">Veja cada solução funcionando.</h2>
-      <p class="lede">Seis frentes com a mesma base: os seus dados. Escolha uma para ver como ela trabalha no dia a dia.</p>
+      <h2 id="t-sol">Seus dados no centro. A inteligência ao redor.</h2>
+      <p class="lede">Seis soluções conectadas à mesma base. Escolha uma para vê-la funcionando.</p>
     </div>
-    <div class="vitrine reveal">
-      <div class="abas" role="tablist" aria-label="Soluções" id="abas"></div>
-      <div class="painel" role="tabpanel" id="painel" aria-live="polite"></div>
+    <div class="vitrine2 reveal">
+      <div class="orbita" id="orbita" role="tablist" aria-label="Soluções">
+        <svg id="orb-svg" viewBox="0 0 100 100" aria-hidden="true"></svg>
+        <div class="nucleo" aria-hidden="true"><span>Seus<br>dados</span></div>
+      </div>
+      <div class="vidro" id="painel" role="tabpanel" aria-live="polite"></div>
     </div>
   </div>
 </section>
 
-<section class="band paper" id="como-pensamos" aria-labelledby="t-pen">
+<section class="band escuro" id="como-pensamos" aria-labelledby="t-pen">
   <div class="wrap">
     <div class="head reveal">
       <p class="kicker">Como pensamos</p>
@@ -326,7 +428,7 @@ footer .brand b{font-size:20px}
   </div>
 </section>
 
-<section class="band" id="metodo" aria-labelledby="t-met">
+<section class="band escuro alt" id="metodo" aria-labelledby="t-met">
   <div class="wrap">
     <div class="head reveal">
       <p class="kicker">Como trabalhamos</p>
@@ -342,7 +444,7 @@ footer .brand b{font-size:20px}
   </div>
 </section>
 
-<section class="band paper" id="diferenciais" aria-labelledby="t-dif">
+<section class="band escuro" id="diferenciais" aria-labelledby="t-dif">
   <div class="wrap">
     <div class="head reveal">
       <p class="kicker">Por que a SJL</p>
@@ -357,7 +459,7 @@ footer .brand b{font-size:20px}
   </div>
 </section>
 
-<section class="band" id="quem-somos" aria-labelledby="t-qs">
+<section class="band escuro alt" id="quem-somos" aria-labelledby="t-qs">
   <div class="wrap about">
     <div class="reveal">
       <p class="kicker">Quem somos</p>
@@ -374,13 +476,37 @@ footer .brand b{font-size:20px}
   </div>
 </section>
 
-<section class="band paper" id="perguntas" aria-labelledby="t-faq">
+<section class="band escuro" id="perguntas" aria-labelledby="t-faq">
   <div class="wrap">
     <div class="head reveal" style="margin:0 auto;text-align:center;align-items:center">
       <p class="kicker">Perguntas frequentes</p>
       <h2 id="t-faq">Antes de conversarmos</h2>
     </div>
     <div class="faq" id="faq"></div>
+  </div>
+</section>
+
+<section class="band calc" id="calculadora" aria-labelledby="t-calc">
+  <div class="wrap calc-grid">
+    <div class="reveal">
+      <p class="kicker">Calcule o seu ganho</p>
+      <h2 id="t-calc">Quanto tempo a IA pode devolver para a sua equipe?</h2>
+      <p class="lede">Ajuste os números da sua rotina e veja uma estimativa das horas que podem ser automatizadas todo mês.</p>
+      <div class="controles">
+        <div class="ctrl"><div class="ctrl-top"><label for="c-qtd">Atendimentos ou tarefas repetitivas por dia</label><output id="o-qtd" for="c-qtd"></output></div><input type="range" id="c-qtd" min="5" max="500" step="5" value="60"></div>
+        <div class="ctrl"><div class="ctrl-top"><label for="c-min">Minutos gastos em cada um</label><output id="o-min" for="c-min"></output></div><input type="range" id="c-min" min="1" max="30" step="1" value="5"></div>
+        <div class="ctrl"><div class="ctrl-top"><label for="c-pct">Parte que pode ser automatizada</label><output id="o-pct" for="c-pct"></output></div><input type="range" id="c-pct" min="10" max="90" step="5" value="60"></div>
+        <div class="ctrl"><div class="ctrl-top"><label for="c-hora">Custo de uma hora de trabalho (R$)</label><output id="o-hora" for="c-hora"></output></div><input type="range" id="c-hora" min="15" max="200" step="5" value="35"></div>
+      </div>
+    </div>
+    <div class="resultado reveal" aria-live="polite">
+      <p class="res-rot">Horas devolvidas por mês</p>
+      <p class="res-num"><span id="r-horas">0</span><small>h</small></p>
+      <div class="res-linha"><div><p class="res-rot">Equivale a</p><p class="res-sec"><span id="r-dias">0</span> dias de trabalho</p></div><div><p class="res-rot">Valor desse tempo</p><p class="res-sec">R$ <span id="r-valor">0</span>/mês</p></div></div>
+      <div class="res-barra"><div id="r-barra"></div></div>
+      <p class="res-nota">Estimativa com 22 dias úteis e jornada de 8 horas. O diagnóstico confirma os números da sua empresa.</p>
+      <a class="btn luz" href="#contato" id="r-cta">Quero esse tempo de volta</a>
+    </div>
   </div>
 </section>
 
@@ -460,11 +586,11 @@ footer .brand b{font-size:20px}
 
   const rot = '<p class="rot">Exemplo ilustrativo</p>';
   const demos = {
-    atendente: () => `<div class="chat"><div class="topo"><div class="av">S</div><div><b>Atendente virtual</b><small>online agora</small></div></div>
-      <div class="msg cli" style="animation-delay:.2s">Oi! Vocês têm horário amanhã para banho e tosa?</div>
-      <div class="msg bot" style="animation-delay:1s">Olá! Temos sim. Às 9h ou às 14h. Qual fica melhor para você?</div>
-      <div class="msg cli" style="animation-delay:1.9s">14h, por favor. É para a Mel.</div>
-      <div class="msg bot" style="animation-delay:2.7s">Pronto! Mel agendada amanhã às 14h. Enviaremos um lembrete pela manhã.</div></div>${rot}`,
+    atendente: () => `<div class="chat"><div class="topo"><div class="av">P</div><div><b>Pet Exemplo · atendente virtual</b><small>online agora</small></div></div>
+      <div class="conversa" id="conversa" aria-live="polite"></div>
+      <div class="rapidas" id="rapidas"></div>
+      <form class="envio" id="envio"><label for="chat-in" class="sr">Sua mensagem</label><input id="chat-in" autocomplete="off" placeholder="Escreva como se fosse um cliente…" maxlength="200"><button type="submit" aria-label="Enviar"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5 21 12 3 3.5l2.5 7L15 12l-9.5 1.5z"/></svg></button></form></div>
+      <p class="rot">Demonstração: converse como se fosse um cliente de um pet shop fictício.</p>`,
     agentes: () => `<div class="fluxo">${['Chega um e-mail com pedido de orçamento','O agente lê, entende e classifica o pedido','Os dados são registrados no sistema','A equipe recebe o resumo pronto para responder']
       .map((t,i)=>`<div class="passo" data-i="${i}"><span>${i+1}</span>${esc(t)}</div>`).join('')}</div>${rot}`,
     bi: () => `<div class="kpis"><div class="kpi"><small>Vendas no mês</small><b>R$ 184 mil</b><em>+12% no mês</em></div><div class="kpi"><small>Ticket médio</small><b>R$ 236</b><em>+4%</em></div><div class="kpi"><small>Clientes novos</small><b>78</b><em>+9</em></div></div>
@@ -480,33 +606,96 @@ footer .brand b{font-size:20px}
       .map((f,i)=>`<div class="fase" data-i="${i}"><span>${i+1}</span><div><h3>${esc(f[0])}</h3><p>${esc(f[1])}</p></div></div>`).join('')}</div>${rot}`
   };
 
-  const abas = document.getElementById('abas'), painel = document.getElementById('painel');
-  abas.innerHTML = solucoes.map((s,i)=>`<button class="aba" role="tab" id="aba-${s.id}" aria-controls="painel" aria-selected="${i===0}" tabindex="${i===0?0:-1}" data-i="${i}"><small>${esc(s.area)}</small><b>${esc(s.nome)}</b></button>`).join('');
+
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const respostas = [
+    {k:['agend','marcar','horario para','banho','tosa','consulta'], r:'Claro! Para quando você quer agendar? Tenho horários amanhã:', op:['Amanhã 9h','Amanhã 14h','Amanhã 16h']},
+    {k:['amanha 9','amanha 14','amanha 16','9h','14h','16h'], r:'Perfeito, horário reservado! Qual é o nome do seu pet?', pet:true},
+    {k:['preco','valor','quanto','custa'], r:'Banho a partir de R$ 50 e tosa a partir de R$ 70, conforme o porte. Quer agendar?', op:['Quero agendar','Endereço']},
+    {k:['endereco','onde','fica','local'], r:'Estamos na Rua Exemplo, 123, Centro. Tem estacionamento em frente.', op:['Horário de funcionamento','Quero agendar']},
+    {k:['funciona','abre','fecha','horario de'], r:'Atendemos de segunda a sábado, das 8h às 18h. Por aqui, respondo a qualquer hora.', op:['Quero agendar','Preços']},
+    {k:['vacina','racao','remedio','produto'], r:'Temos rações, petiscos e acessórios. Para vacinas, posso marcar uma avaliação com a veterinária. Quer agendar?', op:['Quero agendar']},
+    {k:['atendente','humano','pessoa','falar com'], r:'Sem problema! Já avisei a equipe e alguém continua esta conversa em instantes. Seu pedido ficou registrado.'},
+    {k:['obrigad','valeu','tchau'], r:'Eu que agradeço! Qualquer coisa, é só chamar por aqui.'},
+    {k:['oi','ola','bom dia','boa tarde','boa noite'], r:'Olá! Como posso ajudar?', op:['Quero agendar','Preços','Endereço']}
+  ];
+  let esperaPet = false;
+  function iniciaChat(){
+    const conv = document.getElementById('conversa'), rap = document.getElementById('rapidas'), form = document.getElementById('envio'), inp = document.getElementById('chat-in');
+    esperaPet = false;
+    const add = (txt, quem) => { const d = document.createElement('div'); d.className = 'msg ' + quem; d.textContent = txt; conv.appendChild(d); conv.scrollTop = conv.scrollHeight; };
+    const opcoes = ops => { rap.innerHTML = ''; (ops||[]).forEach(o => { const b = document.createElement('button'); b.type = 'button'; b.textContent = o; b.onclick = () => cliente(o); rap.appendChild(b); }); };
+    const bot = (txt, ops) => {
+      opcoes([]);
+      const dig = document.createElement('div'); dig.className = 'digitando'; dig.innerHTML = '<i></i><i></i><i></i>'; conv.appendChild(dig); conv.scrollTop = conv.scrollHeight;
+      timers.push(setTimeout(() => { dig.remove(); add(txt, 'bot'); opcoes(ops); }, 900 + Math.min(txt.length * 12, 900)));
+    };
+    const cliente = txt => {
+      txt = txt.trim(); if (!txt) return;
+      add(txt, 'cli');
+      const n = norm(txt);
+      if (esperaPet) { esperaPet = false; const nome = txt.split(/\s+/)[0].slice(0,20); return bot(`Anotado! ${nome} está agendado(a). Envio um lembrete na manhã do dia. Posso ajudar em algo mais?`, ['Endereço','Falar com atendente']); }
+      const hit = respostas.find(x => x.k.some(k => n.includes(k)));
+      if (hit) { if (hit.pet) esperaPet = true; return bot(hit.r, hit.op); }
+      bot('Posso ajudar com agendamentos, preços, endereço e horários. É só escolher uma opção ou escrever.', ['Quero agendar','Preços','Endereço','Falar com atendente']);
+    };
+    form.addEventListener('submit', e => { e.preventDefault(); cliente(inp.value); inp.value = ''; });
+    bot('Olá! Sou a atendente virtual do Pet Exemplo. Posso agendar banho e tosa, informar preços e tirar dúvidas. Como posso ajudar?', ['Quero agendar','Preços','Endereço','Horário de funcionamento']);
+  }
+
+  const icones = {
+    atendente:'<path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/>',
+    agentes:'<rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9 16h6"/>',
+    bi:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+    engenharia:'<circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="3"/><path d="M7 6c5 0 5 6 9 6M7 18c5 0 5-6 9-6"/>',
+    oracle:'<ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/>',
+    consultoria:'<path d="M12 3l2.5 5.5L20 11l-5.5 2.5L12 19l-2.5-5.5L4 11l5.5-2.5z"/>'
+  };
+  const curtos = {atendente:'Atendente no WhatsApp',agentes:'Agentes de IA',bi:'Painéis de BI',engenharia:'Engenharia de dados',oracle:'Oracle e APEX',consultoria:'Consultoria em IA'};
+  const orb = document.getElementById('orbita'), osvg = document.getElementById('orb-svg'), painel = document.getElementById('painel'), fundo = document.getElementById('ia-fundo');
+  const pos = solucoes.map((s,i) => { const a = (-90 + i*60) * Math.PI/180; return {x:50 + 40*Math.cos(a), y:50 + 40*Math.sin(a), cx:Math.cos(a), cy:Math.sin(a)}; });
+  osvg.innerHTML = '<circle class="anel" cx="50" cy="50" r="40"/><circle class="anel a2" cx="50" cy="50" r="47"/>' +
+    pos.map((p,i)=>`<line class="raio" data-i="${i}" x1="${50+15*p.cx}" y1="${50+15*p.cy}" x2="${50+33*p.cx}" y2="${50+33*p.cy}"/>`).join('');
+  orb.insertAdjacentHTML('beforeend', solucoes.map((s,i)=>`<button class="no" role="tab" id="aba-${s.id}" aria-controls="painel" aria-selected="false" tabindex="-1" data-i="${i}" style="left:${pos[i].x}%;top:${pos[i].y}%"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icones[s.id]}</svg></span><span class="rotulo">${esc(curtos[s.id])}</span></button>`).join(''));
+  const nos = [...orb.querySelectorAll('.no')];
   let timers = [];
   const limpa = () => { timers.forEach(clearTimeout); timers = []; };
+  const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const digita = (el, txt) => {
+    if (calmo) { el.textContent = txt; return; }
+    el.textContent = ''; const c = document.createElement('span'); c.className = 'cursor'; el.appendChild(c);
+    let k = 0; const passo = () => { if (k < txt.length) { c.before(txt[k++]); timers.push(setTimeout(passo, 18)); } else timers.push(setTimeout(()=>c.remove(), 1200)); };
+    passo();
+  };
   const mostra = i => {
     limpa();
     const s = solucoes[i];
-    for (const b of abas.querySelectorAll('.aba')) { const sel = +b.dataset.i === i; b.setAttribute('aria-selected', sel); b.tabIndex = sel ? 0 : -1; }
+    nos.forEach((b,k) => { const sel = k === i; b.setAttribute('aria-selected', sel); b.tabIndex = sel ? 0 : -1; });
+    osvg.querySelectorAll('.raio').forEach(l => l.classList.toggle('on', +l.dataset.i === i));
+    fundo.style.setProperty('--gx', (pos[i].x * .45 + 5) + '%'); fundo.style.setProperty('--gy', pos[i].y + '%');
     painel.setAttribute('aria-labelledby', 'aba-' + s.id);
-    painel.innerHTML = `<div class="demo fade">${demos[s.id]()}</div><div class="info fade"><h3>${esc(s.nome)}</h3><p class="frase">${esc(s.frase)}</p>
-      <dl><div><dt>Para quem</dt><dd>${esc(s.quem)}</dd></div><div><dt>O que entregamos</dt><dd>${esc(s.entrega)}</dd></div><div><dt>Resultado esperado</dt><dd>${esc(s.resultado)}</dd></div></dl>
-      <a class="btn dark" href="#contato" data-interesse="${esc(s.nome)}" style="align-self:flex-start">Quero esta solução</a></div>`;
+    painel.innerHTML = `<div class="pv-topo fade"><span class="pv-area">${esc(s.area)}</span><h3>${esc(s.nome)}</h3><p class="pv-frase" id="pv-frase"></p></div>
+      <div class="demo fade">${demos[s.id]()}</div>
+      <div class="pv-info fade"><div><small>Para quem</small><p>${esc(s.quem)}</p></div><div><small>O que entregamos</small><p>${esc(s.entrega)}</p></div><div><small>Resultado esperado</small><p>${esc(s.resultado)}</p></div></div>
+      <a class="btn luz" href="#contato" data-interesse="${esc(s.nome)}" style="align-self:flex-start">Quero esta solução</a>`;
+    digita(document.getElementById('pv-frase'), s.frase);
+    if (s.id === 'atendente') iniciaChat();
     painel.querySelectorAll('.passo, .fase').forEach((el,k)=>timers.push(setTimeout(()=>el.classList.add('on'), 400 + k*700)));
     timers.push(setTimeout(()=>{
       painel.querySelectorAll('.barras div').forEach(b=>b.style.height = b.dataset.h + '%');
       painel.querySelectorAll('.medidor div').forEach(b=>b.style.width = b.dataset.w + '%');
     }, 80));
   };
-  abas.addEventListener('click', e => { const b = e.target.closest('.aba'); if (b) mostra(+b.dataset.i); });
-  abas.addEventListener('keydown', e => {
-    const atual = +document.activeElement.dataset.i; if (isNaN(atual)) return;
+  orb.addEventListener('click', e => { const b = e.target.closest('.no'); if (b) mostra(+b.dataset.i); });
+  orb.addEventListener('keydown', e => {
+    const atual = nos.indexOf(document.activeElement); if (atual < 0) return;
     let n = null;
-    if (['ArrowDown','ArrowRight'].includes(e.key)) n = (atual + 1) % solucoes.length;
-    if (['ArrowUp','ArrowLeft'].includes(e.key)) n = (atual - 1 + solucoes.length) % solucoes.length;
-    if (n !== null) { e.preventDefault(); mostra(n); abas.children[n].focus(); }
+    if (['ArrowDown','ArrowRight'].includes(e.key)) n = (atual + 1) % nos.length;
+    if (['ArrowUp','ArrowLeft'].includes(e.key)) n = (atual - 1 + nos.length) % nos.length;
+    if (n !== null) { e.preventDefault(); mostra(n); nos[n].focus(); }
   });
   painel.addEventListener('click', e => { const a = e.target.closest('[data-interesse]'); if (a) document.getElementById('f-sol').value = a.dataset.interesse; });
+  painel.addEventListener('pointermove', e => { const r = painel.getBoundingClientRect(); painel.style.setProperty('--mx', (e.clientX - r.left) + 'px'); painel.style.setProperty('--my', (e.clientY - r.top) + 'px'); });
   mostra(0);
 
   const faq = [
@@ -549,6 +738,31 @@ footer .brand b{font-size:20px}
     });
   }
 
+
+  const fmt = n => Math.round(n).toLocaleString('pt-BR');
+  const cIds = ['qtd','min','pct','hora'];
+  const calcula = () => {
+    const v = Object.fromEntries(cIds.map(k => [k, +document.getElementById('c-' + k).value]));
+    cIds.forEach(k => { const el = document.getElementById('c-' + k); el.style.setProperty('--p', ((el.value - el.min) / (el.max - el.min) * 100) + '%'); });
+    document.getElementById('o-qtd').textContent = v.qtd;
+    document.getElementById('o-min').textContent = v.min + ' min';
+    document.getElementById('o-pct').textContent = v.pct + '%';
+    document.getElementById('o-hora').textContent = 'R$ ' + v.hora;
+    const horas = v.qtd * v.min / 60 * 22 * v.pct / 100;
+    document.getElementById('r-horas').textContent = fmt(horas);
+    document.getElementById('r-dias').textContent = (horas / 8).toLocaleString('pt-BR', {maximumFractionDigits: 1});
+    document.getElementById('r-valor').textContent = fmt(horas * v.hora);
+    document.getElementById('r-barra').style.width = Math.min(100, horas / 176 * 100) + '%';
+    return horas;
+  };
+  cIds.forEach(k => document.getElementById('c-' + k).addEventListener('input', calcula));
+  calcula();
+  document.getElementById('r-cta').addEventListener('click', () => {
+    const h = calcula(), m = document.getElementById('f-msg');
+    if (!m.value) m.value = `Fiz a simulação no site: cerca de ${fmt(h)} horas por mês poderiam ser automatizadas. Gostaria de entender como.`;
+  });
+  const passos = document.querySelector('.escuro .steps');
+  if (passos) new IntersectionObserver((es, o) => es.forEach(x => { if (x.isIntersecting) { passos.classList.add('on'); o.disconnect(); } }), {threshold:.4}).observe(passos);
   const obs = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('on'); obs.unobserve(x.target); } }), {threshold:.12});
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 }
