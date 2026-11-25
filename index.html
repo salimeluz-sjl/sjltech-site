@@ -292,7 +292,7 @@ footer .brand b{font-size:20px}
 .calc-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:center}
 .controles{display:flex;flex-direction:column;gap:22px;margin-top:32px}
 .ctrl-top{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-bottom:10px}
-.ctrl label{font-size:15px;font-weight:500;color:#DCE1E8}
+.ctrl label{font-size:16px;font-weight:600;color:#F7F3EA}
 .ctrl output{font:700 20px "Space Grotesk",Arial,sans-serif;color:var(--luz);white-space:nowrap}
 input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;background:linear-gradient(90deg,var(--luz) var(--p,50%),#24364F var(--p,50%));padding:0;min-height:0;border:0}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:#F7F3EA;border:4px solid var(--luz);box-shadow:0 0 16px rgba(242,169,59,.6);cursor:pointer}
@@ -302,16 +302,19 @@ input[type=range]:focus-visible{outline:3px solid var(--luz);outline-offset:8px}
 .resultado::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--ang),transparent 0 62%,rgba(242,169,59,.9) 80%,transparent 96%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:borda 7s linear infinite;pointer-events:none}
 .res-rot{font-size:13px;font-weight:600;color:#AEB8C5}
 .res-num{font:700 clamp(64px,8vw,104px)/1 "Space Grotesk",Arial,sans-serif;color:var(--luz);letter-spacing:-.03em;text-shadow:0 0 40px rgba(242,169,59,.35)}
-.res-num small{font-size:.4em;margin-left:6px;color:#F7F3EA}
+.res-num small{font-size:.34em;margin-left:10px;color:#F7F3EA;letter-spacing:0}
 .res-linha{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .res-linha>div{padding:14px;border-radius:12px;background:rgba(247,243,234,.04);border:1px solid rgba(247,243,234,.08)}
-.res-sec{font:600 22px "Space Grotesk",Arial,sans-serif;margin-top:4px;white-space:nowrap}
+.res-sec{font:700 28px/1.1 "Space Grotesk",Arial,sans-serif;margin-top:6px;color:#F7F3EA}
+.res-sub{font-size:13px;color:#AEB8C5;margin-top:2px}
+.res-frase{color:#DCE1E8;font-size:16px;margin-top:-6px}
+.ajuda{font-size:13px;color:#9FAABA;margin:-4px 0 10px}
 .res-barra{height:8px;border-radius:99px;background:#24364F;overflow:hidden}
 .res-barra div{height:100%;width:0;background:linear-gradient(90deg,#B8700F,var(--luz),#F7D08F);transition:width .5s ease}
 .res-nota{font-size:13px;color:#9FAABA}
 .resultado .btn{align-self:flex-start}
 @media(max-width:820px){.calc-grid{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:600px){.res-linha{grid-template-columns:minmax(0,1fr)}.resultado{padding:22px}}
+@media(max-width:600px){.res-linha{grid-template-columns:minmax(0,1fr)}.resultado{padding:22px}.ctrl-top{flex-direction:column;align-items:flex-start;gap:4px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.ly,.sol,.msg{opacity:1}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
 @media(max-width:1020px){.vitrine{grid-template-columns:minmax(0,1fr)}.abas{flex-direction:row;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}.aba{flex:none;scroll-snap-align:start;min-width:220px}.difs{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(3,minmax(0,1fr))}.nav nav{display:none}}
 @media(max-width:820px){.hero .wrap,.about,.contact .wrap,.painel{grid-template-columns:minmax(0,1fr)}.scene{max-height:380px;order:-1}.layers,.faixa ul{grid-template-columns:repeat(2,minmax(0,1fr))}.c2{right:2%}}
@@ -490,21 +493,24 @@ input[type=range]:focus-visible{outline:3px solid var(--luz);outline-offset:8px}
   <div class="wrap calc-grid">
     <div class="reveal">
       <p class="kicker">Calcule o seu ganho</p>
-      <h2 id="t-calc">Quanto tempo a IA pode devolver para a sua equipe?</h2>
-      <p class="lede">Ajuste os números da sua rotina e veja uma estimativa das horas que podem ser automatizadas todo mês.</p>
+      <h2 id="t-calc">Quanto tempo sua equipe gasta com tarefas repetitivas?</h2>
+      <p class="lede">Responda 4 perguntas rápidas. A calculadora mostra quantas horas por mês a IA poderia fazer no lugar da sua equipe.</p>
       <div class="controles">
-        <div class="ctrl"><div class="ctrl-top"><label for="c-qtd">Atendimentos ou tarefas repetitivas por dia</label><output id="o-qtd" for="c-qtd"></output></div><input type="range" id="c-qtd" min="5" max="500" step="5" value="60"></div>
-        <div class="ctrl"><div class="ctrl-top"><label for="c-min">Minutos gastos em cada um</label><output id="o-min" for="c-min"></output></div><input type="range" id="c-min" min="1" max="30" step="1" value="5"></div>
-        <div class="ctrl"><div class="ctrl-top"><label for="c-pct">Parte que pode ser automatizada</label><output id="o-pct" for="c-pct"></output></div><input type="range" id="c-pct" min="10" max="90" step="5" value="60"></div>
-        <div class="ctrl"><div class="ctrl-top"><label for="c-hora">Custo de uma hora de trabalho (R$)</label><output id="o-hora" for="c-hora"></output></div><input type="range" id="c-hora" min="15" max="200" step="5" value="35"></div>
+        <div class="ctrl"><div class="ctrl-top"><label for="c-qtd">1. Quantas vezes por dia sua equipe faz a mesma tarefa?</label><output id="o-qtd" for="c-qtd"></output></div><p class="ajuda">Exemplos: responder clientes no WhatsApp, digitar pedidos, montar relatórios.</p><input type="range" id="c-qtd" min="5" max="500" step="5" value="60"></div>
+        <div class="ctrl"><div class="ctrl-top"><label for="c-min">2. Quanto tempo leva cada vez?</label><output id="o-min" for="c-min"></output></div><input type="range" id="c-min" min="1" max="30" step="1" value="5"></div>
+        <div class="ctrl"><div class="ctrl-top"><label for="c-pct">3. Quanto disso a IA poderia fazer sozinha?</label><output id="o-pct" for="c-pct"></output></div><p class="ajuda">Nem tudo dá para automatizar. Se não tiver certeza, deixe em metade.</p><input type="range" id="c-pct" min="10" max="90" step="5" value="50"></div>
+        <div class="ctrl"><div class="ctrl-top"><label for="c-hora">4. Quanto custa uma hora de trabalho da sua equipe?</label><output id="o-hora" for="c-hora"></output></div><p class="ajuda">Salário e encargos divididos pelas horas trabalhadas no mês.</p><input type="range" id="c-hora" min="15" max="200" step="5" value="35"></div>
       </div>
     </div>
     <div class="resultado reveal" aria-live="polite">
-      <p class="res-rot">Horas devolvidas por mês</p>
-      <p class="res-num"><span id="r-horas">0</span><small>h</small></p>
-      <div class="res-linha"><div><p class="res-rot">Equivale a</p><p class="res-sec"><span id="r-dias">0</span> dias de trabalho</p></div><div><p class="res-rot">Valor desse tempo</p><p class="res-sec">R$ <span id="r-valor">0</span>/mês</p></div></div>
-      <div class="res-barra"><div id="r-barra"></div></div>
-      <p class="res-nota">Estimativa com 22 dias úteis e jornada de 8 horas. O diagnóstico confirma os números da sua empresa.</p>
+      <p class="res-rot">Todo mês, a IA poderia fazer por você</p>
+      <p class="res-num"><span id="r-horas">0</span><small>horas</small></p>
+      <p class="res-frase">de trabalho repetitivo. É tempo que sua equipe passa a dedicar a vender, atender melhor e decidir.</p>
+      <div class="res-linha">
+        <div><p class="res-rot">Isso equivale a</p><p class="res-sec"><span id="r-dias">0</span> dias</p><p class="res-sub">de trabalho de uma pessoa</p></div>
+        <div><p class="res-rot">Valor desse tempo</p><p class="res-sec">R$ <span id="r-valor">0</span></p><p class="res-sub">por mês</p></div>
+      </div>
+      <p class="res-nota">Como calculamos: vezes por dia × minutos × parte feita pela IA × 22 dias úteis. É uma estimativa. No diagnóstico, fazemos a conta com os dados reais da sua empresa.</p>
       <a class="btn luz" href="#contato" id="r-cta">Quero esse tempo de volta</a>
     </div>
   </div>
@@ -744,15 +750,14 @@ input[type=range]:focus-visible{outline:3px solid var(--luz);outline-offset:8px}
   const calcula = () => {
     const v = Object.fromEntries(cIds.map(k => [k, +document.getElementById('c-' + k).value]));
     cIds.forEach(k => { const el = document.getElementById('c-' + k); el.style.setProperty('--p', ((el.value - el.min) / (el.max - el.min) * 100) + '%'); });
-    document.getElementById('o-qtd').textContent = v.qtd;
-    document.getElementById('o-min').textContent = v.min + ' min';
-    document.getElementById('o-pct').textContent = v.pct + '%';
-    document.getElementById('o-hora').textContent = 'R$ ' + v.hora;
+    document.getElementById('o-qtd').textContent = v.qtd + ' vezes';
+    document.getElementById('o-min').textContent = v.min + (v.min === 1 ? ' minuto' : ' minutos');
+    document.getElementById('o-pct').textContent = v.pct === 50 ? 'Metade (50%)' : v.pct + '%';
+    document.getElementById('o-hora').textContent = 'R$ ' + v.hora + '/hora';
     const horas = v.qtd * v.min / 60 * 22 * v.pct / 100;
     document.getElementById('r-horas').textContent = fmt(horas);
     document.getElementById('r-dias').textContent = (horas / 8).toLocaleString('pt-BR', {maximumFractionDigits: 1});
     document.getElementById('r-valor').textContent = fmt(horas * v.hora);
-    document.getElementById('r-barra').style.width = Math.min(100, horas / 176 * 100) + '%';
     return horas;
   };
   cIds.forEach(k => document.getElementById('c-' + k).addEventListener('input', calcula));
