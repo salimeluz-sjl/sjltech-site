@@ -5,112 +5,232 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SJL Soluções em Tecnologia</title>
 <meta name="description" content="Consultoria em banco de dados, engenharia de dados, BI e inteligência artificial. Dados que iluminam decisões.">
+<meta property="og:title" content="SJL Soluções em Tecnologia">
+<meta property="og:description" content="Banco de dados, engenharia de dados, BI e inteligência artificial. Dados que iluminam decisões.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sjltech.com.br">
+<meta name="theme-color" content="#0E1B2C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230E1B2C'/%3E%3Crect x='22' y='18' width='13' height='64' rx='6.5' fill='%23F7F3EA'/%3E%3Crect x='22' y='69' width='58' height='13' rx='6.5' fill='%23F7F3EA'/%3E%3Ccircle cx='68' cy='34' r='11' fill='%23F2A93B'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
 <style>
-/* VOICE: consultoria serena e confiante; frases curtas, foco no resultado.
-   IDEA: a página se comporta como o símbolo da marca: camadas de dados que acendem uma luz.
-   PICTURE: no topo, campo noite com pontos de dados e o "L" em camadas acendendo o ponto âmbar.
+/* VOICE: consultoria serena e segura; frases curtas, sempre em termos de resultado.
+   IDEA: a página é uma vitrine viva: cada solução aparece funcionando, como um produto em demonstração.
+   PICTURE: no topo, o "L" em camadas acende o ponto de luz; nas soluções, uma tela de demonstração muda a cada aba.
    COLOUR and TYPE: noite #0E1B2C domina, papel #F7F3EA apoia, âmbar #F2A93B só como luz; Space Grotesk + Inter.
-   LAYOUT: cabeçalho, herói em faixa noite, soluções, como pensamos, método, quem somos, contato e rodapé. */
+   LAYOUT: cabeçalho, herói, faixa de especialidades, vitrine, como pensamos, método, diferenciais, quem somos, perguntas, contato. */
 :root{color-scheme:light dark;
   --bg:light-dark(#FAFAF7,#0B1624);--ink:light-dark(#0E1B2C,#F7F3EA);--muted:light-dark(#4A5565,#C2C9D3);
   --card:light-dark(#FFFFFF,#13233A);--line:light-dark(#E4E1D8,#24364F);--paper:light-dark(#F7F3EA,#102036);
-  --noite:#0E1B2C;--luz:#F2A93B;--ambar-txt:light-dark(#8F5508,#F2A93B)}
+  --noite:#0E1B2C;--noite2:#13233A;--luz:#F2A93B;--ambar:light-dark(#8F5508,#F2A93B)}
 :root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,"Segoe UI",Arial,sans-serif;overflow-x:clip}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,"Segoe UI",Arial,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
 h1,h2,h3{font-family:"Space Grotesk","Segoe UI",Arial,sans-serif;line-height:1.08;margin:0;text-wrap:balance}
-h1{font-size:clamp(38px,5.4vw,60px);font-weight:700;letter-spacing:-.02em}
-h2{font-size:clamp(30px,3.6vw,44px);font-weight:600;letter-spacing:-.01em}
+h1{font-size:clamp(40px,5.6vw,64px);font-weight:700;letter-spacing:-.025em}
+h2{font-size:clamp(30px,3.6vw,46px);font-weight:600;letter-spacing:-.015em}
 h3{font-size:20px;font-weight:600}
-p{margin:0}
-a{color:inherit}
+p{margin:0}a{color:inherit}
 .wrap{max-width:1200px;margin:0 auto}
-.band{padding:clamp(48px,7vw,104px) max(5vw,16px)}
-.lede{font-size:18px;color:var(--muted);max-width:62ch}
-.kicker{font-size:15px;font-weight:600;color:var(--ambar-txt);margin-bottom:12px}
-.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:10px;font-weight:600;text-decoration:none;border:2px solid transparent;transition:transform .15s}
+.band{padding:clamp(56px,8vw,112px) max(5vw,16px)}
+.lede{font-size:18px;color:var(--muted);max-width:60ch}
+.kicker{font-size:15px;font-weight:600;color:var(--ambar);margin-bottom:12px}
+.head{display:flex;flex-direction:column;gap:14px;max-width:760px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:10px;font:600 16px Inter,Arial,sans-serif;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s,background .15s}
 .btn:hover{transform:translateY(-1px)}
-.btn:focus-visible,a:focus-visible{outline:3px solid var(--luz);outline-offset:3px}
-.btn.luz{background:var(--luz);color:#0E1B2C}
-.btn.ghost{border-color:rgba(247,243,234,.45);color:#F7F3EA}
+.btn.luz{background:var(--luz);color:#0E1B2C}.btn.luz:hover{background:#F5B85A}
+.btn.ghost{border-color:rgba(247,243,234,.4);color:#F7F3EA;background:transparent}
+.btn.dark{background:var(--noite);color:#F7F3EA}
+:focus-visible{outline:3px solid var(--luz);outline-offset:3px}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.on{opacity:1;transform:none}
+
 /* cabeçalho */
-header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding:12px max(5vw,16px);max-width:1290px;margin:0 auto}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
-.brand b{font-family:"Space Grotesk",Arial,sans-serif;font-size:24px;letter-spacing:-.02em}
-.brand small{font-size:10px;font-weight:600;letter-spacing:.12em;color:var(--muted);line-height:1.2}
-.nav nav{display:flex;gap:20px;margin-left:auto;flex-wrap:wrap}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:28px;padding:12px max(5vw,16px);max-width:1290px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.brand b{font-family:"Space Grotesk",Arial,sans-serif;font-size:24px;letter-spacing:-.02em;line-height:1}
+.brand small{display:block;font-size:10px;font-weight:600;letter-spacing:.12em;color:var(--muted);margin-top:3px}
+.nav nav{display:flex;gap:22px;margin-left:auto}
 .nav nav a{text-decoration:none;font-weight:500;font-size:15px;color:var(--muted);padding:10px 0}
 .nav nav a:hover{color:var(--ink)}
+.nav .btn{min-height:42px;padding:0 18px;font-size:15px}
+
 /* herói */
-.hero{background:var(--noite);color:#F7F3EA}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center}
+.hero{background:radial-gradient(1200px 600px at 80% 20%,#17304d 0%,var(--noite) 60%);color:#F7F3EA;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:56px;align-items:center}
 .hero .kicker{color:var(--luz)}
-.hero .lede{color:#C9CFD8;margin:20px 0 32px}
+.hero .lede{color:#C9CFD8;margin:22px 0 32px}
 .ctas{display:flex;gap:14px;flex-wrap:wrap}
-.scene{position:relative;aspect-ratio:1/1;max-height:520px;width:100%}
+.selos{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
+.selo{font-size:13px;font-weight:500;color:#DCE1E8;border:1px solid #2A3E5A;border-radius:999px;padding:6px 14px;background:rgba(255,255,255,.03)}
+.scene{position:relative;aspect-ratio:1/1;max-height:540px;width:100%}
 .scene svg{width:100%;height:100%;display:block}
-@keyframes acende{0%,100%{opacity:.55}50%{opacity:1}}
-.glow{animation:acende 4s ease-in-out infinite}
-@media(prefers-reduced-motion:reduce){.glow{animation:none}html{scroll-behavior:auto}}
-/* soluções */
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:40px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:10px}
-.card .area{font-size:13px;font-weight:600;color:var(--ambar-txt)}
-.card p{color:var(--muted)}
-.card .res{margin-top:auto;padding-top:14px;border-top:1px solid var(--line);font-size:15px;color:var(--ink)}
+.chip{position:absolute;display:flex;align-items:center;gap:10px;background:rgba(19,35,58,.92);border:1px solid #2A3E5A;border-radius:12px;padding:10px 14px;font-size:14px;color:#F7F3EA;box-shadow:0 12px 30px rgba(0,0,0,.3);white-space:nowrap}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--luz);flex:none}
+.c1{top:8%;left:2%}.c2{top:46%;right:-2%}.c3{bottom:6%;left:16%}
+@keyframes flutua{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.chip{animation:flutua 6s ease-in-out infinite}.c2{animation-delay:-2s}.c3{animation-delay:-4s}
+@keyframes camada{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes acende{0%{opacity:0;transform:scale(.4)}60%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+@keyframes halo{0%,100%{opacity:.5}50%{opacity:1}}
+.ly{opacity:0;animation:camada .7s ease forwards}.ly1{animation-delay:.2s}.ly2{animation-delay:.55s}.ly3{animation-delay:.9s}
+.sol{transform-box:fill-box;transform-origin:center;opacity:0;animation:acende .8s 1.3s ease forwards}
+.halo{animation:halo 4s 2s ease-in-out infinite}
+
+/* faixa de especialidades */
+.faixa{border-bottom:1px solid var(--line);padding:22px max(5vw,16px)}
+.faixa ul{list-style:none;margin:0 auto;padding:0;max-width:1200px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.faixa li{display:flex;align-items:center;gap:12px;font-weight:600;font-size:15px}
+.faixa li span{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:var(--paper);color:var(--ambar);font-family:"Space Grotesk",Arial,sans-serif;flex:none}
+
+/* vitrine */
+.vitrine{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:28px;margin-top:44px;align-items:start}
+.abas{display:flex;flex-direction:column;gap:8px}
+.aba{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:2px;padding:16px 18px;border-radius:12px;border:1px solid var(--line);background:var(--card);min-height:44px}
+.aba small{font-size:12px;font-weight:600;color:var(--ambar)}
+.aba b{font-family:"Space Grotesk",Arial,sans-serif;font-size:17px;font-weight:600}
+.aba[aria-selected=true]{background:var(--noite);color:#F7F3EA;border-color:var(--noite)}
+.aba[aria-selected=true] small{color:var(--luz)}
+.aba:focus-visible{outline:3px solid var(--luz);outline-offset:2px}
+.painel{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+.demo{background:var(--noite);padding:28px;min-height:420px;position:relative;color:#F7F3EA;display:flex;flex-direction:column}
+.demo .rot{font-size:12px;color:#9FAABA;margin-top:auto;padding-top:14px}
+.info{padding:30px;display:flex;flex-direction:column;gap:18px}
+.info h3{font-size:24px}
+.info .frase{color:var(--muted);font-size:17px}
+.info dl{margin:0;display:flex;flex-direction:column;gap:14px}
+.info dt{font-size:13px;font-weight:600;color:var(--ambar)}
+.info dd{margin:2px 0 0;color:var(--ink)}
+.fade{animation:entra .45s ease}
+@keyframes entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* demos */
+.chat{display:flex;flex-direction:column;gap:10px;flex:1}
+.chat .topo{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid #24364F;margin-bottom:6px}
+.chat .av{width:34px;height:34px;border-radius:50%;background:var(--luz);display:grid;place-items:center;color:#0E1B2C;font-weight:700;font-size:14px}
+.chat .topo small{display:block;color:#9FAABA;font-size:12px}
+.msg{max-width:82%;padding:9px 13px;border-radius:12px;font-size:14px;line-height:1.45;opacity:0;animation:entra .4s ease forwards}
+.msg.cli{align-self:flex-end;background:#2A3E5A;border-bottom-right-radius:4px}
+.msg.bot{align-self:flex-start;background:#F7F3EA;color:#0E1B2C;border-bottom-left-radius:4px}
+.fluxo{display:flex;flex-direction:column;gap:10px;flex:1}
+.passo{display:flex;align-items:center;gap:14px;padding:14px;border-radius:12px;background:#13233A;border:1px solid #24364F;opacity:.35;transition:opacity .4s,border-color .4s}
+.passo.on{opacity:1;border-color:var(--luz)}
+.passo span{width:30px;height:30px;border-radius:8px;background:#24364F;display:grid;place-items:center;font-weight:700;font-size:14px;flex:none}
+.passo.on span{background:var(--luz);color:#0E1B2C}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.kpi{background:#13233A;border:1px solid #24364F;border-radius:12px;padding:12px}
+.kpi small{color:#9FAABA;font-size:12px;display:block}
+.kpi b{font-family:"Space Grotesk",Arial,sans-serif;font-size:20px;white-space:nowrap;display:block}
+.kpi em{font-style:normal;font-size:12px;color:var(--luz);display:block}
+.barras{display:flex;align-items:flex-end;gap:8px;height:210px;padding:12px;background:#13233A;border:1px solid #24364F;border-radius:12px}
+.barras div{flex:1;background:#3A4F6B;border-radius:6px 6px 2px 2px;height:0;transition:height .9s cubic-bezier(.2,.8,.2,1)}
+.barras div:last-child{background:var(--luz)}
+.meses{display:flex;gap:8px;padding:6px 12px 0;font-size:11px;color:#9FAABA}.meses span{flex:1;text-align:center}
+.pipe{display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr);align-items:center;gap:6px;flex:1}
+.fontes{display:flex;flex-direction:column;gap:10px}
+.fonte{padding:12px;border-radius:10px;background:#13233A;border:1px solid #24364F;font-size:14px;text-align:center}
+.seta{height:2px;background:repeating-linear-gradient(90deg,var(--luz) 0 6px,transparent 6px 12px);background-size:24px 2px;animation:corre 1s linear infinite}
+@keyframes corre{to{background-position:24px 0}}
+.central{padding:22px 14px;border-radius:14px;background:#F7F3EA;color:#0E1B2C;text-align:center}
+.central b{font-family:"Space Grotesk",Arial,sans-serif;font-size:18px;display:block}
+.central small{font-size:12px;color:#4A5565}
+.saude{display:flex;flex-direction:column;gap:10px;flex:1}
+.linha{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px;border-radius:12px;background:#13233A;border:1px solid #24364F;font-size:14px}
+.ok{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:#F7F3EA}
+.ok i{width:10px;height:10px;border-radius:50%;background:#58C08A}
+.medidor{height:8px;border-radius:99px;background:#24364F;overflow:hidden;margin-top:8px}
+.medidor div{height:100%;background:var(--luz);width:0;transition:width 1s ease}
+.trilha{display:flex;flex-direction:column;gap:0;flex:1;justify-content:center}
+.fase{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;padding-bottom:18px;position:relative}
+.fase::before{content:"";position:absolute;left:21px;top:44px;bottom:0;width:2px;background:#24364F}
+.fase:last-child::before{display:none}
+.fase span{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#24364F;font-family:"Space Grotesk",Arial,sans-serif;font-weight:700}
+.fase.on span{background:var(--luz);color:#0E1B2C}
+.fase p{color:#C9CFD8;font-size:14px}
+
 /* camadas */
 .paper{background:var(--paper)}
-.layers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:40px;align-items:end}
-.layer{border-radius:14px;padding:22px;color:#F7F3EA;display:flex;flex-direction:column;gap:6px}
-.layer span{font-family:"Space Grotesk",Arial,sans-serif;font-size:28px;font-weight:700}
+.layers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:44px;align-items:end}
+.layer{border-radius:16px;padding:24px;color:#F7F3EA;display:flex;flex-direction:column;gap:6px}
+.layer span{font-family:"Space Grotesk",Arial,sans-serif;font-size:30px;font-weight:700;opacity:.9}
 .layer p{color:#D5DAE1;font-size:15px}
-.l1{background:#0E1B2C;min-height:170px}.l2{background:#23354D;min-height:200px}.l3{background:#3A4F6B;min-height:230px}
-.l4{background:var(--luz);color:#0E1B2C;min-height:260px}.l4 p{color:#3A2A0C}
+.l1{background:#0E1B2C;min-height:180px}.l2{background:#23354D;min-height:215px}.l3{background:#3A4F6B;min-height:250px}
+.l4{background:var(--luz);color:#0E1B2C;min-height:285px;box-shadow:0 20px 60px rgba(242,169,59,.35)}.l4 p{color:#3A2A0C}
+
 /* método */
-.steps{list-style:none;padding:0;margin:40px 0 0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;counter-reset:s}
-.steps li{counter-increment:s;border-top:3px solid var(--ink);padding-top:16px}
-.steps li::before{content:counter(s);font-family:"Space Grotesk",Arial,sans-serif;font-size:32px;font-weight:700;color:var(--ambar-txt);display:block;margin-bottom:6px}
+.steps{list-style:none;padding:0;margin:44px 0 0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;counter-reset:s}
+.steps li{counter-increment:s;border-top:3px solid var(--ink);padding-top:18px}
+.steps li::before{content:counter(s);font-family:"Space Grotesk",Arial,sans-serif;font-size:34px;font-weight:700;color:var(--ambar);display:block;margin-bottom:6px}
 .steps p{color:var(--muted);font-size:15px;margin-top:4px}
+
+/* diferenciais */
+.difs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:44px}
+.dif{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:10px}
+.dif svg{width:36px;height:36px;color:var(--ambar)}
+.dif p{color:var(--muted);font-size:15px}
+
 /* quem somos */
-.about{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:56px;align-items:start}
-.creds{display:flex;flex-direction:column}
-.cred{display:grid;grid-template-columns:88px minmax(0,1fr);gap:16px;padding:18px 0;border-top:1px solid var(--line);align-items:baseline}
-.cred b{font-family:"Space Grotesk",Arial,sans-serif;font-size:26px;color:var(--ambar-txt)}
+.about{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:64px;align-items:start}
 .about .lede+.lede{margin-top:16px}
+.perfil{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px}
+.perfil .nome{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.perfil .ini{width:56px;height:56px;border-radius:14px;background:var(--noite);color:var(--luz);display:grid;place-items:center;font:700 22px "Space Grotesk",Arial,sans-serif}
+.perfil small{color:var(--muted);display:block}
+.cred{display:grid;grid-template-columns:84px minmax(0,1fr);gap:14px;padding:16px 0;border-top:1px solid var(--line);align-items:baseline}
+.cred b{font-family:"Space Grotesk",Arial,sans-serif;font-size:26px;color:var(--ambar)}
+
+/* perguntas */
+.faq{max-width:860px;margin:40px auto 0;display:flex;flex-direction:column;gap:10px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 22px}
+.faq summary{cursor:pointer;list-style:none;padding:20px 0;font-weight:600;font-size:17px;display:flex;justify-content:space-between;gap:16px;align-items:center;min-height:44px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:600 24px "Space Grotesk",Arial,sans-serif;color:var(--ambar);flex:none}
+.faq details[open] summary::after{content:"–"}
+.faq details p{padding:0 0 20px;color:var(--muted)}
+
 /* contato */
 .contact{background:var(--noite);color:#F7F3EA}
-.contact .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:56px;align-items:start}
 .contact .lede{color:#C9CFD8;margin-top:16px}
-.box{background:#13233A;border:1px solid #24364F;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px}
-.box .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;padding-bottom:16px;border-bottom:1px solid #24364F}
-.box .row:last-child{border:0;padding:0}
-.box small{color:#AEB8C5;font-size:13px;display:block}
-.box strong{font-size:17px;overflow-wrap:anywhere}
+.contact .kicker{color:var(--luz)}
+.diretos{display:flex;flex-direction:column;gap:12px;margin-top:32px}
+.direto{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:16px 18px;border:1px solid #24364F;border-radius:12px}
+.direto small{display:block;color:#AEB8C5;font-size:13px}
+.direto strong{overflow-wrap:anywhere}
 .copy{min-height:44px;padding:0 16px;border-radius:10px;border:1px solid #3A4F6B;background:transparent;color:#F7F3EA;font:600 14px Inter,Arial,sans-serif;cursor:pointer}
-.copy:focus-visible{outline:3px solid var(--luz);outline-offset:2px}
-footer{padding:28px max(5vw,16px);font-size:14px;color:var(--muted);border-top:1px solid var(--line)}
-footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-/* telas menores */
-@media(max-width:960px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(3,minmax(0,1fr))}.layers{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:760px){.hero .wrap,.about,.contact .wrap{grid-template-columns:minmax(0,1fr)}.scene{max-height:340px;order:-1}.nav nav{display:none}}
-@media(max-width:600px){.grid,.steps,.layers{grid-template-columns:minmax(0,1fr)}.layer{min-height:0!important}}
+form{background:#13233A;border:1px solid #24364F;border-radius:20px;padding:28px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.campo{display:flex;flex-direction:column;gap:6px}.campo.full{grid-column:1/-1}
+label{font-size:14px;font-weight:600;color:#DCE1E8}
+input,select,textarea{font:16px Inter,Arial,sans-serif;color:#F7F3EA;background:#0E1B2C;border:1px solid #3A4F6B;border-radius:10px;padding:12px 14px;min-height:48px;width:100%}
+textarea{min-height:120px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--luz);outline-offset:1px;border-color:var(--luz)}
+.aviso{grid-column:1/-1;font-size:14px;color:#C9CFD8;min-height:20px}
+.whats-flut{position:fixed;right:20px;bottom:20px;z-index:30;width:58px;height:58px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+footer{padding:32px max(5vw,16px);font-size:14px;color:var(--muted);border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer .brand b{font-size:20px}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.ly,.sol{opacity:1}.reveal{opacity:1;transform:none}html{scroll-behavior:auto}}
+@media(max-width:1020px){.vitrine{grid-template-columns:minmax(0,1fr)}.abas{flex-direction:row;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}.aba{flex:none;scroll-snap-align:start;min-width:220px}.difs{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(3,minmax(0,1fr))}.nav nav{display:none}}
+@media(max-width:820px){.hero .wrap,.about,.contact .wrap,.painel{grid-template-columns:minmax(0,1fr)}.scene{max-height:380px;order:-1}.layers,.faixa ul{grid-template-columns:repeat(2,minmax(0,1fr))}.c2{right:2%}}
+@media(max-width:600px){.steps,.difs,.layers,form{grid-template-columns:minmax(0,1fr)}.layer{min-height:0!important}.nav .btn{display:none}.chip{font-size:12px;padding:8px 10px}.kpi b{font-size:16px}.kpi{padding:10px}.demo{padding:18px}.kpis{gap:8px}.pipe{grid-template-columns:minmax(0,1fr);}.seta{height:24px;width:2px;justify-self:center;background:repeating-linear-gradient(180deg,var(--luz) 0 6px,transparent 6px 12px)}}
 </style>
 </head>
 <body>
 <header>
   <div class="nav">
     <a class="brand" href="#inicio" aria-label="SJL Soluções em Tecnologia, início">
-      <svg width="40" height="40" viewBox="0 0 100 100" aria-hidden="true"><rect x="12" y="10" width="9" height="80" rx="4.5" fill="currentColor"/><rect x="12" y="81" width="78" height="9" rx="4.5" fill="currentColor"/><rect x="27" y="28" width="9" height="47" rx="4.5" fill="currentColor" fill-opacity=".75"/><rect x="27" y="66" width="47" height="9" rx="4.5" fill="currentColor" fill-opacity=".75"/><rect x="42" y="46" width="9" height="14" rx="4.5" fill="currentColor" fill-opacity=".5"/><rect x="42" y="51" width="16" height="9" rx="4.5" fill="currentColor" fill-opacity=".5"/><circle cx="72" cy="30" r="10" fill="#F2A93B"/></svg>
-      <span><b>SJL</b><br><small>SOLUÇÕES EM TECNOLOGIA</small></span>
+      <svg width="40" height="40" viewBox="0 0 100 100" aria-hidden="true"><rect x="12" y="10" width="9" height="80" rx="4.5" fill="currentColor"/><rect x="12" y="81" width="78" height="9" rx="4.5" fill="currentColor"/><rect x="27" y="28" width="9" height="47" rx="4.5" fill="currentColor" opacity=".7"/><rect x="27" y="66" width="47" height="9" rx="4.5" fill="currentColor" opacity=".7"/><rect x="42" y="51" width="16" height="9" rx="4.5" fill="currentColor" opacity=".45"/><circle cx="72" cy="30" r="10" fill="#F2A93B"/></svg>
+      <span><b>SJL</b><small>SOLUÇÕES EM TECNOLOGIA</small></span>
     </a>
     <nav aria-label="Seções">
-      <a href="#solucoes">Soluções</a><a href="#como-pensamos">Como pensamos</a><a href="#metodo">Como trabalhamos</a><a href="#quem-somos">Quem somos</a><a href="#contato">Contato</a>
+      <a href="#solucoes">Soluções</a><a href="#como-pensamos">Como pensamos</a><a href="#metodo">Método</a><a href="#quem-somos">Quem somos</a><a href="#perguntas">Perguntas</a>
     </nav>
+    <a class="btn luz" href="#contato">Fale com a SJL</a>
   </div>
 </header>
 
@@ -118,69 +238,101 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <section class="band hero">
   <div class="wrap">
     <div>
-      <p class="kicker">Banco de dados, engenharia de dados, BI e inteligência artificial</p>
+      <p class="kicker">Banco de dados · Engenharia de dados · BI · Inteligência artificial</p>
       <h1>Dados que iluminam decisões.</h1>
       <p class="lede">Organizamos os dados da sua empresa e colocamos a inteligência artificial para trabalhar no atendimento, nos processos e nas decisões do dia a dia.</p>
       <div class="ctas">
-        <a class="btn luz" href="#contato">Agendar uma conversa</a>
-        <a class="btn ghost" href="#solucoes">Ver soluções</a>
+        <a class="btn luz" href="#contato">Agendar um diagnóstico</a>
+        <a class="btn ghost" href="#solucoes">Ver as soluções</a>
+      </div>
+      <div class="selos" aria-label="Credenciais">
+        <span class="selo">Oracle OCA/OCP</span><span class="selo">Oracle APEX Professional</span><span class="selo">Pós em IA aplicada aos Negócios</span><span class="selo">12+ anos com dados</span>
       </div>
     </div>
     <div class="scene">
       <svg viewBox="0 0 520 520" role="img" aria-label="Camadas de dados formando a letra L e acendendo um ponto de luz">
         <defs>
-          <radialGradient id="halo" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#F2A93B" stop-opacity=".55"/><stop offset="1" stop-color="#F2A93B" stop-opacity="0"/></radialGradient>
-          <linearGradient id="face" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7F3EA"/><stop offset="1" stop-color="#D9D3C4"/></linearGradient>
-          <pattern id="pts" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.6" fill="#5B6B80" opacity=".45"/></pattern>
+          <radialGradient id="g-halo" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#F2A93B" stop-opacity=".6"/><stop offset="1" stop-color="#F2A93B" stop-opacity="0"/></radialGradient>
+          <linearGradient id="g-face" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFDF8"/><stop offset="1" stop-color="#D9D3C4"/></linearGradient>
+          <pattern id="g-pts" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#5B6B80" opacity=".4"/></pattern>
         </defs>
-        <rect width="520" height="520" fill="url(#pts)"/>
-        <circle class="glow" cx="372" cy="150" r="170" fill="url(#halo)"/>
+        <rect width="520" height="520" fill="url(#g-pts)"/>
+        <circle class="halo" cx="372" cy="150" r="145" fill="url(#g-halo)"/>
         <g transform="translate(46 40)">
-          <rect x="16" y="16" width="44" height="400" rx="22" fill="#000" opacity=".25"/>
-          <rect x="16" y="372" width="400" height="44" rx="22" fill="#000" opacity=".25"/>
-          <rect x="0" y="0" width="44" height="400" rx="22" fill="url(#face)"/>
-          <rect x="0" y="356" width="400" height="44" rx="22" fill="url(#face)"/>
-          <rect x="78" y="92" width="44" height="240" rx="22" fill="#F7F3EA" opacity=".72"/>
-          <rect x="78" y="288" width="244" height="44" rx="22" fill="#F7F3EA" opacity=".72"/>
-          <rect x="156" y="184" width="44" height="80" rx="22" fill="#F7F3EA" opacity=".45"/>
-          <rect x="156" y="220" width="88" height="44" rx="22" fill="#F7F3EA" opacity=".45"/>
-          <line x1="200" y1="190" x2="290" y2="128" stroke="#F2A93B" stroke-width="2" stroke-dasharray="4 8" opacity=".7"/>
-          <circle cx="326" cy="110" r="62" fill="none" stroke="#F2A93B" stroke-opacity=".35" stroke-width="3"/>
-          <circle cx="326" cy="110" r="40" fill="#F2A93B"/>
-          <circle cx="314" cy="98" r="12" fill="#FFF3DC" opacity=".8"/>
+          <g class="ly ly1">
+            <rect x="14" y="14" width="44" height="400" rx="22" fill="#000" opacity=".28"/>
+            <rect x="14" y="370" width="400" height="44" rx="22" fill="#000" opacity=".28"/>
+            <rect x="0" y="0" width="44" height="400" rx="22" fill="url(#g-face)"/>
+            <rect x="0" y="356" width="400" height="44" rx="22" fill="url(#g-face)"/>
+          </g>
+          <g class="ly ly2">
+            <rect x="78" y="92" width="44" height="240" rx="22" fill="#BDBDBB"/>
+            <rect x="78" y="288" width="244" height="44" rx="22" fill="#BDBDBB"/>
+          </g>
+          <g class="ly ly3">
+            <rect x="156" y="164" width="44" height="100" rx="22" fill="#83878B"/>
+            <rect x="156" y="220" width="120" height="44" rx="22" fill="#83878B"/>
+          </g>
+          <g class="sol">
+            <circle cx="326" cy="110" r="64" fill="none" stroke="#F2A93B" stroke-opacity=".35" stroke-width="3"/>
+            <circle cx="326" cy="110" r="40" fill="#F2A93B"/>
+            <circle cx="313" cy="97" r="12" fill="#FFF3DC" opacity=".85"/>
+          </g>
         </g>
       </svg>
+      <div class="chip c1" aria-hidden="true"><i></i>Dados integrados</div>
+      <div class="chip c2" aria-hidden="true"><i></i>Indicador atualizado</div>
+      <div class="chip c3" aria-hidden="true"><i></i>Atendimento respondido pela IA</div>
     </div>
   </div>
 </section>
 
+<div class="faixa">
+  <ul>
+    <li><span>1</span>Banco de dados</li>
+    <li><span>2</span>Engenharia de dados</li>
+    <li><span>3</span>BI e análise</li>
+    <li><span>4</span>Inteligência artificial</li>
+  </ul>
+</div>
+
 <section class="band" id="solucoes" aria-labelledby="t-sol">
   <div class="wrap">
-    <p class="kicker">Soluções</p>
-    <h2 id="t-sol">Seis frentes, uma mesma base: os seus dados.</h2>
-    <div class="grid" id="lista-solucoes"></div>
+    <div class="head reveal">
+      <p class="kicker">Soluções</p>
+      <h2 id="t-sol">Veja cada solução funcionando.</h2>
+      <p class="lede">Seis frentes com a mesma base: os seus dados. Escolha uma para ver como ela trabalha no dia a dia.</p>
+    </div>
+    <div class="vitrine reveal">
+      <div class="abas" role="tablist" aria-label="Soluções" id="abas"></div>
+      <div class="painel" role="tabpanel" id="painel" aria-live="polite"></div>
+    </div>
   </div>
 </section>
 
 <section class="band paper" id="como-pensamos" aria-labelledby="t-pen">
   <div class="wrap">
-    <p class="kicker">Como pensamos</p>
-    <h2 id="t-pen">Tudo começa nos dados. A inteligência vem depois.</h2>
-    <p class="lede" style="margin-top:16px">É a história do nosso símbolo: camadas sólidas de dados que acendem um ponto de luz. Sem uma base organizada, a IA não se sustenta.</p>
+    <div class="head reveal">
+      <p class="kicker">Como pensamos</p>
+      <h2 id="t-pen">Tudo começa nos dados. A inteligência vem depois.</h2>
+      <p class="lede">É a história do nosso símbolo: camadas sólidas de dados que acendem um ponto de luz. Sem uma base organizada, a IA não se sustenta.</p>
+    </div>
     <div class="layers">
-      <div class="layer l1"><span>1</span><h3>Banco de dados</h3><p>Base segura, rápida e bem administrada.</p></div>
-      <div class="layer l2"><span>2</span><h3>Engenharia de dados</h3><p>Dados integrados, limpos e confiáveis.</p></div>
-      <div class="layer l3"><span>3</span><h3>BI e análise</h3><p>Indicadores que mostram o caminho.</p></div>
-      <div class="layer l4"><span>4</span><h3>Inteligência artificial</h3><p>Automação e decisões mais inteligentes.</p></div>
+      <div class="layer l1 reveal"><span>1</span><h3>Banco de dados</h3><p>Base segura, rápida e bem administrada.</p></div>
+      <div class="layer l2 reveal"><span>2</span><h3>Engenharia de dados</h3><p>Dados integrados, limpos e confiáveis.</p></div>
+      <div class="layer l3 reveal"><span>3</span><h3>BI e análise</h3><p>Indicadores que mostram o caminho.</p></div>
+      <div class="layer l4 reveal"><span>4</span><h3>Inteligência artificial</h3><p>Automação e decisões mais inteligentes.</p></div>
     </div>
   </div>
 </section>
 
 <section class="band" id="metodo" aria-labelledby="t-met">
   <div class="wrap">
-    <p class="kicker">Como trabalhamos</p>
-    <h2 id="t-met">Cinco etapas, com entregas visíveis em cada uma.</h2>
-    <ol class="steps">
+    <div class="head reveal">
+      <p class="kicker">Como trabalhamos</p>
+      <h2 id="t-met">Cinco etapas, com entregas visíveis em cada uma.</h2>
+    </div>
+    <ol class="steps reveal">
       <li><h3>Diagnóstico</h3><p>Entendemos o negócio, os dados e as dores.</p></li>
       <li><h3>Desenho</h3><p>Solução, fluxos e metas validados com você.</p></li>
       <li><h3>Construção</h3><p>Ciclos curtos, com demonstrações.</p></li>
@@ -190,86 +342,215 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   </div>
 </section>
 
-<section class="band paper" id="quem-somos" aria-labelledby="t-qs">
+<section class="band paper" id="diferenciais" aria-labelledby="t-dif">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="kicker">Por que a SJL</p>
+      <h2 id="t-dif">Base técnica de grande empresa, atendimento de perto.</h2>
+    </div>
+    <div class="difs">
+      <div class="dif reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg><h3>Base técnica sólida</h3><p>DBA certificada Oracle: desempenho e segurança desde a origem dos dados.</p></div>
+      <div class="dif reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg><h3>IA com os pés no chão</h3><p>Aplicamos IA onde há dados e retorno claro, não por modismo.</p></div>
+      <div class="dif reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><h3>Atendimento direto</h3><p>Você fala com quem projeta e executa, sem intermediários.</p></div>
+      <div class="dif reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><h3>Sigilo e LGPD</h3><p>Termo de confidencialidade e dados de cada cliente isolados.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="quem-somos" aria-labelledby="t-qs">
   <div class="wrap about">
-    <div>
+    <div class="reveal">
       <p class="kicker">Quem somos</p>
       <h2 id="t-qs">Especialistas em dados, do banco à inteligência artificial.</h2>
-      <p class="lede" style="margin-top:16px">A SJL Soluções em Tecnologia nasceu em 2024 para levar a empresas de todos os portes a mesma base técnica usada em grandes operações, agora com IA aplicada ao dia a dia.</p>
-      <p class="lede">Você fala direto com quem projeta e executa, com sigilo e respeito à LGPD em cada projeto.</p>
+      <p class="lede" style="margin-top:18px">A SJL Soluções em Tecnologia nasceu em 2024 para levar a empresas de todos os portes a mesma base técnica usada em grandes operações, agora com IA aplicada ao dia a dia.</p>
+      <p class="lede">Atendemos de forma remota em todo o Brasil, a partir de Florianópolis/SC.</p>
     </div>
-    <div>
-      <h3 style="margin-bottom:8px">Salime Luz, fundadora e consultora</h3>
-      <div class="creds">
-        <div class="cred"><b>12+</b><p>anos como DBA e especialista em dados</p></div>
-        <div class="cred"><b>OCP</b><p>Certificações Oracle OCA/OCP e Oracle APEX Professional</p></div>
-        <div class="cred"><b>IA</b><p>Pós-graduação em Inteligência Artificial aplicada aos Negócios</p></div>
-      </div>
+    <div class="perfil reveal">
+      <div class="nome"><div class="ini" aria-hidden="true">SL</div><div><h3>Salime Luz</h3><small>Fundadora e consultora em dados e IA</small></div></div>
+      <div class="cred"><b>12+</b><p>anos como DBA e especialista em dados</p></div>
+      <div class="cred"><b>OCP</b><p>Certificações Oracle OCA/OCP e Oracle APEX Professional</p></div>
+      <div class="cred"><b>IA</b><p>Pós-graduação em Inteligência Artificial aplicada aos Negócios</p></div>
     </div>
+  </div>
+</section>
+
+<section class="band paper" id="perguntas" aria-labelledby="t-faq">
+  <div class="wrap">
+    <div class="head reveal" style="margin:0 auto;text-align:center;align-items:center">
+      <p class="kicker">Perguntas frequentes</p>
+      <h2 id="t-faq">Antes de conversarmos</h2>
+    </div>
+    <div class="faq" id="faq"></div>
   </div>
 </section>
 
 <section class="band contact" id="contato" aria-labelledby="t-con">
   <div class="wrap">
-    <div>
-      <p class="kicker" style="color:#F2A93B">Contato</p>
+    <div class="reveal">
+      <p class="kicker">Contato</p>
       <h2 id="t-con">Vamos iluminar os seus dados?</h2>
-      <p class="lede">Conte o seu desafio. Respondemos com uma proposta sob medida.</p>
-    </div>
-    <div class="box">
-      <div class="row">
-        <div><small>E-mail</small><strong><a href="mailto:salime.luz@sjltech.com.br">salime.luz@sjltech.com.br</a></strong></div>
-        <button class="copy" type="button" data-copy="salime.luz@sjltech.com.br">Copiar</button>
+      <p class="lede">Conte o seu desafio. Respondemos com os próximos passos e, se fizer sentido, uma proposta sob medida.</p>
+      <div class="diretos">
+        <div class="direto"><div><small>E-mail</small><strong><a href="mailto:salime.luz@sjltech.com.br">salime.luz@sjltech.com.br</a></strong></div><button class="copy" type="button" data-copy="salime.luz@sjltech.com.br">Copiar</button></div>
+        <div class="direto" id="direto-whats" hidden><div><small>WhatsApp</small><strong id="whats-txt"></strong></div><a class="btn luz" id="whats-link" href="#" style="min-height:44px">Chamar</a></div>
       </div>
-      <div class="row" id="linha-whats" hidden>
-        <div><small>WhatsApp</small><strong id="whats-txt"></strong></div>
-        <a class="btn luz" id="whats-link" href="#" style="min-height:44px">Chamar</a>
-      </div>
-      <div class="row"><div><small>Atendimento</small><strong>Florianópolis/SC e todo o Brasil, remoto</strong></div></div>
     </div>
+    <form id="form" class="reveal" novalidate>
+      <div class="campo"><label for="f-nome">Seu nome</label><input id="f-nome" name="nome" autocomplete="name" required></div>
+      <div class="campo"><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" autocomplete="organization"></div>
+      <div class="campo"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="campo"><label for="f-sol">Interesse</label><select id="f-sol" name="interesse"></select></div>
+      <div class="campo full"><label for="f-msg">Qual é o seu desafio?</label><textarea id="f-msg" name="mensagem" required></textarea></div>
+      <div class="campo full"><button class="btn luz" type="submit">Enviar mensagem</button></div>
+      <p class="aviso" id="aviso" role="status"></p>
+    </form>
   </div>
 </section>
 </main>
 
+<a class="whats-flut" id="whats-flut" href="#" hidden aria-label="Conversar pelo WhatsApp"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.2Z"/></svg></a>
+
 <footer>
   <div class="wrap">
-    <span>SJL Soluções em Tecnologia Ltda · CNPJ 57.012.203/0001-15</span>
-    <span>Rua José Licínio Lopes, 1241, Canto, Florianópolis/SC</span>
+    <a class="brand" href="#inicio"><b>SJL</b><small>SOLUÇÕES EM TECNOLOGIA</small></a>
+    <span>SJL Soluções em Tecnologia Ltda · CNPJ 57.012.203/0001-15 · Florianópolis/SC</span>
   </div>
 </footer>
 
 <script>
 {
-  // Preencha aqui: WhatsApp só com números (ex.: 5548999990000).
+  // Preencha aqui: WhatsApp só com números, com DDI e DDD (ex.: 5548999990000).
   const WHATSAPP = '';
+  const EMAIL = 'salime.luz@sjltech.com.br';
+
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
   const solucoes = [
-    {area:'Inteligência artificial', nome:'Atendente virtual com IA no WhatsApp', desc:'Atendente com o jeito da sua marca, ligada ao WhatsApp e a uma base de clientes e pedidos.', res:'Resposta imediata e histórico de quem comprou e de quem desistiu.'},
-    {area:'Inteligência artificial', nome:'Agentes de IA sob medida', desc:'Agentes conectados aos seus sistemas para cadastros, triagem de e-mails, relatórios e atendimento interno.', res:'Horas da equipe liberadas para o que exige julgamento humano.'},
-    {area:'Dados', nome:'Painéis de BI', desc:'Indicadores de vendas, estoque e finanças com atualização automática e treinamento da equipe.', res:'Decisões com dados confiáveis, sem esperar o fechamento do mês.'},
-    {area:'Dados', nome:'Engenharia de dados', desc:'Integração de ERP, planilhas e sistemas num repositório central, com qualidade monitorada.', res:'Uma única versão dos números, base para BI e IA.'},
-    {area:'Dados', nome:'Banco de dados Oracle e APEX', desc:'Administração, desempenho, backup e recuperação, migrações e aplicações em Oracle APEX.', res:'Menos lentidão e menos risco de parada.'},
-    {area:'Inteligência artificial', nome:'Consultoria e treinamento em IA', desc:'Mapa de oportunidades, plano de adoção por prioridade e treinamentos práticos.', res:'IA onde dá retorno, com uso responsável e de acordo com a LGPD.'}
+    {id:'atendente', area:'Inteligência artificial', nome:'Atendente virtual no WhatsApp',
+     frase:'Seu atendimento funcionando 24 horas, sem deixar nenhum cliente sem resposta.',
+     quem:'Clínicas, restaurantes, lojas e prestadores de serviço que vendem e atendem pelo WhatsApp.',
+     entrega:'Atendente com o jeito da sua marca, ligada ao WhatsApp e a uma base de clientes e pedidos.',
+     resultado:'Resposta imediata, vendas fora do horário e histórico de quem comprou e de quem desistiu.'},
+    {id:'agentes', area:'Inteligência artificial', nome:'Agentes de IA sob medida',
+     frase:'Tarefas repetitivas feitas pela IA, com supervisão da sua equipe.',
+     quem:'Empresas com processos manuais: cadastros, triagem de e-mails e documentos, relatórios.',
+     entrega:'Agente conectado aos seus sistemas e dados, com regras e limites definidos com você.',
+     resultado:'Horas da equipe liberadas para o trabalho que exige julgamento humano.'},
+    {id:'bi', area:'Dados', nome:'Painéis de BI',
+     frase:'Os números do negócio atualizados e num só lugar.',
+     quem:'Gestores que dependem de planilhas manuais para acompanhar vendas, estoque ou finanças.',
+     entrega:'Painéis interativos com os principais indicadores, atualização automática e treinamento.',
+     resultado:'Decisões com dados confiáveis, sem esperar o fechamento do mês.'},
+    {id:'engenharia', area:'Dados', nome:'Engenharia de dados',
+     frase:'Dados de vários sistemas, integrados e prontos para análise e IA.',
+     quem:'Empresas com ERP, planilhas e sistemas que não conversam entre si.',
+     entrega:'Rotinas de integração, modelagem e um repositório central, com qualidade monitorada.',
+     resultado:'Uma única versão dos números para toda a empresa.'},
+    {id:'oracle', area:'Dados', nome:'Banco de dados Oracle e APEX',
+     frase:'Seu banco de dados rápido, seguro e disponível, com DBA certificada.',
+     quem:'Empresas que dependem de Oracle e precisam de DBA especializada sem contratar em tempo integral.',
+     entrega:'Administração, ajuste de desempenho, backup e recuperação, migrações e aplicações em Oracle APEX.',
+     resultado:'Menos lentidão, menos risco de parada e sistemas estáveis.'},
+    {id:'consultoria', area:'Inteligência artificial', nome:'Consultoria e treinamento em IA',
+     frase:'Um plano prático para sua empresa usar IA com segurança.',
+     quem:'Lideranças e equipes que querem adotar IA, mas não sabem por onde começar.',
+     entrega:'Mapa de oportunidades, plano de adoção por prioridade e treinamentos práticos.',
+     resultado:'IA onde dá retorno, com uso responsável e de acordo com a LGPD.'}
   ];
-  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  document.getElementById('lista-solucoes').innerHTML = solucoes.map(s =>
-    `<article class="card"><span class="area">${esc(s.area)}</span><h3>${esc(s.nome)}</h3><p>${esc(s.desc)}</p><p class="res">${esc(s.res)}</p></article>`
-  ).join('');
+
+  const rot = '<p class="rot">Exemplo ilustrativo</p>';
+  const demos = {
+    atendente: () => `<div class="chat"><div class="topo"><div class="av">S</div><div><b>Atendente virtual</b><small>online agora</small></div></div>
+      <div class="msg cli" style="animation-delay:.2s">Oi! Vocês têm horário amanhã para banho e tosa?</div>
+      <div class="msg bot" style="animation-delay:1s">Olá! Temos sim. Às 9h ou às 14h. Qual fica melhor para você?</div>
+      <div class="msg cli" style="animation-delay:1.9s">14h, por favor. É para a Mel.</div>
+      <div class="msg bot" style="animation-delay:2.7s">Pronto! Mel agendada amanhã às 14h. Enviaremos um lembrete pela manhã.</div></div>${rot}`,
+    agentes: () => `<div class="fluxo">${['Chega um e-mail com pedido de orçamento','O agente lê, entende e classifica o pedido','Os dados são registrados no sistema','A equipe recebe o resumo pronto para responder']
+      .map((t,i)=>`<div class="passo" data-i="${i}"><span>${i+1}</span>${esc(t)}</div>`).join('')}</div>${rot}`,
+    bi: () => `<div class="kpis"><div class="kpi"><small>Vendas no mês</small><b>R$ 184 mil</b><em>+12% no mês</em></div><div class="kpi"><small>Ticket médio</small><b>R$ 236</b><em>+4%</em></div><div class="kpi"><small>Clientes novos</small><b>78</b><em>+9</em></div></div>
+      <div class="barras">${[42,55,48,63,70,86].map(h=>`<div data-h="${h}"></div>`).join('')}</div>
+      <div class="meses">${['jun','jul','ago','set','out','nov'].map(m=>`<span>${m}</span>`).join('')}</div>${rot}`,
+    engenharia: () => `<div class="pipe"><div class="fontes"><div class="fonte">ERP</div><div class="fonte">Planilhas</div><div class="fonte">WhatsApp</div><div class="fonte">Loja virtual</div></div>
+      <div class="seta" aria-hidden="true"></div><div class="central"><b>Repositório central</b><small>dados limpos, integrados e prontos para BI e IA</small></div></div>${rot}`,
+    oracle: () => `<div class="saude"><div class="linha"><span>Disponibilidade do banco</span><span class="ok"><i></i>Em operação</span></div>
+      <div class="linha"><span>Último backup verificado</span><span class="ok"><i></i>Concluído</span></div>
+      <div class="linha" style="display:block"><span>Uso de armazenamento</span><div class="medidor"><div data-w="62"></div></div></div>
+      <div class="linha" style="display:block"><span>Consultas otimizadas no mês</span><div class="medidor"><div data-w="85"></div></div></div></div>${rot}`,
+    consultoria: () => `<div class="trilha">${[['Mapear','Onde a IA gera retorno no seu negócio.'],['Priorizar','Plano de adoção com metas e riscos claros.'],['Capacitar','Equipe treinada para usar IA com segurança.']]
+      .map((f,i)=>`<div class="fase" data-i="${i}"><span>${i+1}</span><div><h3>${esc(f[0])}</h3><p>${esc(f[1])}</p></div></div>`).join('')}</div>${rot}`
+  };
+
+  const abas = document.getElementById('abas'), painel = document.getElementById('painel');
+  abas.innerHTML = solucoes.map((s,i)=>`<button class="aba" role="tab" id="aba-${s.id}" aria-controls="painel" aria-selected="${i===0}" tabindex="${i===0?0:-1}" data-i="${i}"><small>${esc(s.area)}</small><b>${esc(s.nome)}</b></button>`).join('');
+  let timers = [];
+  const limpa = () => { timers.forEach(clearTimeout); timers = []; };
+  const mostra = i => {
+    limpa();
+    const s = solucoes[i];
+    for (const b of abas.querySelectorAll('.aba')) { const sel = +b.dataset.i === i; b.setAttribute('aria-selected', sel); b.tabIndex = sel ? 0 : -1; }
+    painel.setAttribute('aria-labelledby', 'aba-' + s.id);
+    painel.innerHTML = `<div class="demo fade">${demos[s.id]()}</div><div class="info fade"><h3>${esc(s.nome)}</h3><p class="frase">${esc(s.frase)}</p>
+      <dl><div><dt>Para quem</dt><dd>${esc(s.quem)}</dd></div><div><dt>O que entregamos</dt><dd>${esc(s.entrega)}</dd></div><div><dt>Resultado esperado</dt><dd>${esc(s.resultado)}</dd></div></dl>
+      <a class="btn dark" href="#contato" data-interesse="${esc(s.nome)}" style="align-self:flex-start">Quero esta solução</a></div>`;
+    painel.querySelectorAll('.passo, .fase').forEach((el,k)=>timers.push(setTimeout(()=>el.classList.add('on'), 400 + k*700)));
+    timers.push(setTimeout(()=>{
+      painel.querySelectorAll('.barras div').forEach(b=>b.style.height = b.dataset.h + '%');
+      painel.querySelectorAll('.medidor div').forEach(b=>b.style.width = b.dataset.w + '%');
+    }, 80));
+  };
+  abas.addEventListener('click', e => { const b = e.target.closest('.aba'); if (b) mostra(+b.dataset.i); });
+  abas.addEventListener('keydown', e => {
+    const atual = +document.activeElement.dataset.i; if (isNaN(atual)) return;
+    let n = null;
+    if (['ArrowDown','ArrowRight'].includes(e.key)) n = (atual + 1) % solucoes.length;
+    if (['ArrowUp','ArrowLeft'].includes(e.key)) n = (atual - 1 + solucoes.length) % solucoes.length;
+    if (n !== null) { e.preventDefault(); mostra(n); abas.children[n].focus(); }
+  });
+  painel.addEventListener('click', e => { const a = e.target.closest('[data-interesse]'); if (a) document.getElementById('f-sol').value = a.dataset.interesse; });
+  mostra(0);
+
+  const faq = [
+    ['Atendem empresas de qualquer tamanho?','Sim. De pequenos negócios que querem um atendimento automatizado a empresas com operações de dados maiores. O projeto é dimensionado para o seu momento.'],
+    ['Preciso ter os dados organizados para usar IA?','Não. Começamos pela base: organizamos e integramos os dados primeiro, para que a IA trabalhe com informação confiável.'],
+    ['Como funciona o primeiro contato?','Uma conversa de diagnóstico para entender o seu desafio. Depois, você recebe uma proposta com escopo, prazo e investimento.'],
+    ['Meus dados ficam seguros?','Sim. Trabalhamos com termo de confidencialidade, seguimos a LGPD e mantemos os dados de cada cliente isolados.'],
+    ['Vocês atendem fora de Santa Catarina?','Sim. O atendimento é remoto para todo o Brasil.'],
+    ['Há suporte depois da entrega?','Sim. Todo projeto tem um período de acompanhamento, e há planos de suporte mensal para quem quiser continuidade.']
+  ];
+  document.getElementById('faq').innerHTML = faq.map(([q,r])=>`<details class="reveal"><summary>${esc(q)}</summary><p>${esc(r)}</p></details>`).join('');
+
+  const sel = document.getElementById('f-sol');
+  sel.innerHTML = ['Ainda não sei, quero um diagnóstico', ...solucoes.map(s=>s.nome)].map(n=>`<option>${esc(n)}</option>`).join('');
+
+  const aviso = document.getElementById('aviso');
+  document.getElementById('form').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.target, d = Object.fromEntries(new FormData(f));
+    if (!d.nome.trim() || !d.email.trim() || !d.mensagem.trim()) { aviso.textContent = 'Preencha nome, e-mail e o seu desafio.'; return; }
+    const corpo = `Nome: ${d.nome}\nEmpresa: ${d.empresa}\nE-mail: ${d.email}\nInteresse: ${d.interesse}\n\n${d.mensagem}`;
+    const url = `mailto:${EMAIL}?subject=${encodeURIComponent('Contato pelo site: ' + d.interesse)}&body=${encodeURIComponent(corpo)}`;
+    aviso.textContent = `Abrimos o seu aplicativo de e-mail com a mensagem pronta. Se ele não abrir, escreva para ${EMAIL}.`;
+    window.location.href = url;
+  });
 
   if (WHATSAPP) {
-    const n = WHATSAPP.replace(/\D/g, '');
-    document.getElementById('linha-whats').hidden = false;
+    const n = WHATSAPP.replace(/\D/g,''), link = 'https://wa.me/' + n;
+    document.getElementById('direto-whats').hidden = false;
     document.getElementById('whats-txt').textContent = '+' + n;
-    document.getElementById('whats-link').href = 'https://wa.me/' + n;
+    document.getElementById('whats-link').href = link;
+    const fl = document.getElementById('whats-flut'); fl.hidden = false; fl.href = link;
   }
 
   for (const b of document.querySelectorAll('[data-copy]')) {
     b.addEventListener('click', async () => {
       try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = 'Copiado'; }
-      catch (e) { b.textContent = 'Selecione e copie'; }
+      catch (err) { b.textContent = 'Selecione e copie'; }
       setTimeout(() => { b.textContent = 'Copiar'; }, 2000);
     });
   }
+
+  const obs = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('on'); obs.unobserve(x.target); } }), {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 }
 </script>
 </body>
